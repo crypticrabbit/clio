@@ -24,7 +24,7 @@ from which data can be extracted. The rippled node does not need to be running o
 2. Access to one or more rippled nodes. Can be local or remote.
 
 ## Building
-clio is built with cmake. clio requires c++20, and boost 1.75.0 or later. protobuf v2 is required and must be manually built on systems that ship with v3, including Debian 11 and Ubuntu 21.10.
+clio is built with cmake. clio requires c++20, and boost 1.75.0 or later. protobuf v2 or v3 can both be used, however, users with older systems will need to update to GCC 8 or later and cmake 3.16.3 or later.
 Use these instructions to build a clio executable from source. These instructions were tested on Ubuntu 20.04 LTS.
 
 ```
@@ -32,7 +32,7 @@ Use these instructions to build a clio executable from source. These instruction
 2. sudo apt-get -y upgrade
 3. sudo apt-get -y install git pkg-config protobuf-compiler libprotobuf-dev libssl-dev wget build-essential bison flex autoconf cmake
 4. Boost:
-  wget https://boostorg.jfrog.io/artifactory/main/release/1.75.0/source/boost_1_75_0.tar.gz
+  wget -O ~/boost_1_75_0.tar.gz https://boostorg.jfrog.io/artifactory/main/release/1.75.0/source/boost_1_75_0.tar.gz
   tar xvzf boost_1_75_0.tar.gz
   cd boost_1_75_0
   ./bootstrap.sh
@@ -42,11 +42,13 @@ Use these instructions to build a clio executable from source. These instruction
   # -------------------------------
   export BOOST_ROOT=/home/my_user/boost_1_75_0
   source ~/.profile
-5. git clone https://github.com/XRPLF/clio.git
-6. mkdir build
-7. cd build
-8. cmake ..
-9. cmake --build . -- -j$((`nproc`+1))
+5. cd ~
+6. git clone https://github.com/XRPLF/clio.git
+7. cd clio
+8. mkdir build
+9. cd build
+10. cmake ..
+11. cmake --build . -- -j$((`nproc`+1))
 ```
 
 ## Running
